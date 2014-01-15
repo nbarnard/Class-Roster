@@ -19,6 +19,11 @@
 		11D295091885E096004C0A08 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 11D294F11885E096004C0A08 /* UIKit.framework */; };
 		11D295111885E096004C0A08 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 11D2950F1885E096004C0A08 /* InfoPlist.strings */; };
 		11D295131885E096004C0A08 /* Class_RosterTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 11D295121885E096004C0A08 /* Class_RosterTests.m */; };
+		11D2951D1885E0C1004C0A08 /* Main_iPhone.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 11D2951C1885E0C1004C0A08 /* Main_iPhone.storyboard */; };
+		11D295201885E0ED004C0A08 /* NmffViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 11D2951F1885E0ED004C0A08 /* NmffViewController.m */; };
+		11D295291885E2FD004C0A08 /* NmffDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 11D295281885E2FD004C0A08 /* NmffDetailViewController.m */; };
+		11D2952D1885EC07004C0A08 /* NmffIndividual.m in Sources */ = {isa = PBXBuildFile; fileRef = 11D2952C1885EC07004C0A08 /* NmffIndividual.m */; };
+		11D2952F1885F126004C0A08 /* Bootcamp.plist in Resources */ = {isa = PBXBuildFile; fileRef = 11D2952E1885F126004C0A08 /* Bootcamp.plist */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -48,6 +53,14 @@
 		11D2950E1885E096004C0A08 /* Class RosterTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Class RosterTests-Info.plist"; sourceTree = "<group>"; };
 		11D295101885E096004C0A08 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		11D295121885E096004C0A08 /* Class_RosterTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Class_RosterTests.m; sourceTree = "<group>"; };
+		11D2951C1885E0C1004C0A08 /* Main_iPhone.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main_iPhone.storyboard; sourceTree = "<group>"; };
+		11D2951E1885E0ED004C0A08 /* NmffViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NmffViewController.h; sourceTree = "<group>"; };
+		11D2951F1885E0ED004C0A08 /* NmffViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NmffViewController.m; sourceTree = "<group>"; };
+		11D295271885E2FD004C0A08 /* NmffDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NmffDetailViewController.h; sourceTree = "<group>"; };
+		11D295281885E2FD004C0A08 /* NmffDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NmffDetailViewController.m; sourceTree = "<group>"; };
+		11D2952B1885EC07004C0A08 /* NmffIndividual.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NmffIndividual.h; sourceTree = "<group>"; };
+		11D2952C1885EC07004C0A08 /* NmffIndividual.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NmffIndividual.m; sourceTree = "<group>"; };
+		11D2952E1885F126004C0A08 /* Bootcamp.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Bootcamp.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -109,6 +122,14 @@
 			children = (
 				11D294FC1885E096004C0A08 /* NmffAppDelegate.h */,
 				11D294FD1885E096004C0A08 /* NmffAppDelegate.m */,
+				11D2951C1885E0C1004C0A08 /* Main_iPhone.storyboard */,
+				11D2951E1885E0ED004C0A08 /* NmffViewController.h */,
+				11D2951F1885E0ED004C0A08 /* NmffViewController.m */,
+				11D295271885E2FD004C0A08 /* NmffDetailViewController.h */,
+				11D295281885E2FD004C0A08 /* NmffDetailViewController.m */,
+				11D2952B1885EC07004C0A08 /* NmffIndividual.h */,
+				11D2952C1885EC07004C0A08 /* NmffIndividual.m */,
+				11D2952E1885F126004C0A08 /* Bootcamp.plist */,
 				11D294FF1885E096004C0A08 /* Images.xcassets */,
 				11D294F41885E096004C0A08 /* Supporting Files */,
 			);
@@ -221,7 +242,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				11D294F81885E096004C0A08 /* InfoPlist.strings in Resources */,
+				11D2952F1885F126004C0A08 /* Bootcamp.plist in Resources */,
 				11D295001885E096004C0A08 /* Images.xcassets in Resources */,
+				11D2951D1885E0C1004C0A08 /* Main_iPhone.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -242,6 +265,9 @@
 			files = (
 				11D294FA1885E096004C0A08 /* main.m in Sources */,
 				11D294FE1885E096004C0A08 /* NmffAppDelegate.m in Sources */,
+				11D295291885E2FD004C0A08 /* NmffDetailViewController.m in Sources */,
+				11D295201885E0ED004C0A08 /* NmffViewController.m in Sources */,
+				11D2952D1885EC07004C0A08 /* NmffIndividual.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -364,6 +390,7 @@
 				GCC_PREFIX_HEADER = "Class Roster/Class Roster-Prefix.pch";
 				INFOPLIST_FILE = "Class Roster/Class Roster-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = 1;
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -377,6 +404,7 @@
 				GCC_PREFIX_HEADER = "Class Roster/Class Roster-Prefix.pch";
 				INFOPLIST_FILE = "Class Roster/Class Roster-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = 1;
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;
