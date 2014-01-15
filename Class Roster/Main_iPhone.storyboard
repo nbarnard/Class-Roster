@@ -43,8 +43,23 @@
                             <constraint firstItem="HYX-Rb-8CE" firstAttribute="top" secondItem="kh9-bI-dsS" secondAttribute="top" id="V6N-cf-hg2"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" id="ub9-zM-mdJ"/>
+                    <navigationItem key="navigationItem" id="ub9-zM-mdJ">
+                        <barButtonItem key="rightBarButtonItem" title="Alphabetize" style="plain" id="ftQ-j7-wFw">
+                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="gIs-Lv-XYt">
+                                <rect key="frame" x="214" y="5" width="90" height="33"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                <state key="normal" title="Alphabetize">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="alphabetizeButtonPressed:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="3dx-MJ-G6L"/>
+                                </connections>
+                            </button>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
+                        <outlet property="alphabetizeButton" destination="ftQ-j7-wFw" id="eWy-6p-qNp"/>
                         <outlet property="myTableView" destination="HYX-Rb-8CE" id="g8I-GW-1bT"/>
                     </connections>
                 </viewController>

@@ -14,6 +14,7 @@
 @interface NmffViewController ()
 @property (weak, nonatomic) IBOutlet UITableView *myTableView;
 @property (strong,nonatomic) NmffDataController *myDataSource;
+@property (weak, nonatomic) IBOutlet UIBarButtonItem *alphabetizeButton;
 
 @end
 
@@ -43,6 +44,12 @@
         NmffDetailViewController *destination = (NmffDetailViewController *)segue.destinationViewController;
         destination.individualName = individual;
     }
+}
+
+- (IBAction) alphabetizeButtonPressed:(id)sender {
+    [_myDataSource alphabetizeList];
+
+    [_myTableView reloadData];
 }
 
 

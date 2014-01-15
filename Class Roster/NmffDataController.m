@@ -43,10 +43,17 @@
     return self;
 }
 
+- (void)alphabetizeList {
+
+    NSSortDescriptor *nameDescriptor = [[NSSortDescriptor alloc] initWithKey:@"name" ascending:YES];
+
+    NSArray *sortDescriptors = @[nameDescriptor];
+
+    _myIndividualsArray = [_myIndividualsArray sortedArrayUsingDescriptors:sortDescriptors];
+
+}
 
 -(NSInteger) tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-
-
 
     return _myIndividualsArray.count;
 }
