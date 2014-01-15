@@ -9,64 +9,27 @@
 #import "NmffViewController.h"
 #import "NmffDetailViewController.h"
 #import "NmffIndividual.h"
+#import "NmffDataController.h"
 
 @interface NmffViewController ()
 @property (weak, nonatomic) IBOutlet UITableView *myTableView;
-@property (strong, nonatomic) NSArray *myIndividualsArray;
+@property (strong,nonatomic) NmffDataController *myDataSource;
+
 @end
 
 @implementation NmffViewController
-
-
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
 
     _myTableView.delegate = self;
-    _myTableView.dataSource = self;
+    _myDataSource = [[NmffDataController alloc] init];
+    _myTableView.dataSource = _myDataSource;
+
     self.title = @"Roster";
 
-    _myIndividualsArray = self.loadIndividuals;
-
     // Do any additional setup after loading the view, typically from a nib.
-}
-
-
-- (NSArray *)loadIndividuals {
-
-    NSString *fileName = [[NSBundle mainBundle] pathForResource: @"Bootcamp" ofType:@"plist"];
-
-    NSMutableArray *individuals = [NSMutableArray new];
-
-    NSArray *individualDict = [[NSArray alloc] initWithContentsOfFile:fileName];
-
-    for (NSDictionary *individual in individualDict) {
-        NSString *name = [individual objectForKey:@"name"];
-        UIImage *image = [UIImage new];
-
-        [individuals addObject: [[NmffIndividual alloc] initWithName:name andRole:Student andImage:image]];
-    }
-
-    return [[NSArray alloc] initWithArray:individuals];
-}
-
-
--(NSInteger) tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-
-    return _myIndividualsArray.count;
-}
-
--(UITableViewCell *) tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"myCell" forIndexPath: indexPath];
-
-    NmffIndividual *currentIndividual = [_myIndividualsArray objectAtIndex:indexPath.row];
-
-    cell.textLabel.text = currentIndividual.name;
-
-    return cell;
-
 }
 
 

@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		111F197018860B5000D54F8C /* NmffDataController.m in Sources */ = {isa = PBXBuildFile; fileRef = 111F196F18860B5000D54F8C /* NmffDataController.m */; };
 		11D294EE1885E096004C0A08 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 11D294ED1885E096004C0A08 /* Foundation.framework */; };
 		11D294F01885E096004C0A08 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 11D294EF1885E096004C0A08 /* CoreGraphics.framework */; };
 		11D294F21885E096004C0A08 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 11D294F11885E096004C0A08 /* UIKit.framework */; };
@@ -37,6 +38,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		111F196E18860B5000D54F8C /* NmffDataController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NmffDataController.h; sourceTree = "<group>"; };
+		111F196F18860B5000D54F8C /* NmffDataController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NmffDataController.m; sourceTree = "<group>"; };
 		11D294EA1885E096004C0A08 /* Class Roster.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Class Roster.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		11D294ED1885E096004C0A08 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		11D294EF1885E096004C0A08 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -122,11 +125,13 @@
 			children = (
 				11D294FC1885E096004C0A08 /* NmffAppDelegate.h */,
 				11D294FD1885E096004C0A08 /* NmffAppDelegate.m */,
+				11D295271885E2FD004C0A08 /* NmffDetailViewController.h */,
+				11D295281885E2FD004C0A08 /* NmffDetailViewController.m */,
 				11D2951C1885E0C1004C0A08 /* Main_iPhone.storyboard */,
 				11D2951E1885E0ED004C0A08 /* NmffViewController.h */,
 				11D2951F1885E0ED004C0A08 /* NmffViewController.m */,
-				11D295271885E2FD004C0A08 /* NmffDetailViewController.h */,
-				11D295281885E2FD004C0A08 /* NmffDetailViewController.m */,
+				111F196E18860B5000D54F8C /* NmffDataController.h */,
+				111F196F18860B5000D54F8C /* NmffDataController.m */,
 				11D2952B1885EC07004C0A08 /* NmffIndividual.h */,
 				11D2952C1885EC07004C0A08 /* NmffIndividual.m */,
 				11D2952E1885F126004C0A08 /* Bootcamp.plist */,
@@ -267,6 +272,7 @@
 				11D294FE1885E096004C0A08 /* NmffAppDelegate.m in Sources */,
 				11D295291885E2FD004C0A08 /* NmffDetailViewController.m in Sources */,
 				11D295201885E0ED004C0A08 /* NmffViewController.m in Sources */,
+				111F197018860B5000D54F8C /* NmffDataController.m in Sources */,
 				11D2952D1885EC07004C0A08 /* NmffIndividual.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -470,6 +476,7 @@
 				11D295181885E096004C0A08 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		11D295191885E096004C0A08 /* Build configuration list for PBXNativeTarget "Class RosterTests" */ = {
 			isa = XCConfigurationList;
@@ -478,6 +485,7 @@
 				11D2951B1885E096004C0A08 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
