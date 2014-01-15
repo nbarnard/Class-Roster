@@ -46,10 +46,29 @@
     }
 }
 
-- (IBAction) alphabetizeButtonPressed:(id)sender {
-    [_myDataSource alphabetizeList];
+- (IBAction) sortButtonPressed:(id)sender {
+
+
+    UIActionSheet *sortDirectionActionSheet = [[UIActionSheet alloc] initWithTitle:@"Sort direction" delegate:self cancelButtonTitle:@"Cancel" destructiveButtonTitle:nil otherButtonTitles:@"A - Z", @"Z - A", nil];
+
+    [sortDirectionActionSheet showInView:_myTableView];
+
+}
+
+- (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex {
+
+    NSString *buttonTapped = [actionSheet buttonTitleAtIndex:buttonIndex];
+
+    if([buttonTapped isEqualToString:@"A - Z"]) {
+        [_myDataSource sortListDirection:YES];
+    } else if ([buttonTapped isEqualToString:@"Z - A"]) {
+        [_myDataSource sortListDirection:NO];
+    } else {
+        return;
+    }
 
     [_myTableView reloadData];
+
 }
 
 

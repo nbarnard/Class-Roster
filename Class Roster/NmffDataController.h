@@ -10,6 +10,6 @@
 
 @interface NmffDataController : NSObject <UITableViewDataSource>
 
-- (void)alphabetizeList;
+- (void)sortListDirection: (BOOL) direction;
 
 @end

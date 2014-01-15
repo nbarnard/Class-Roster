@@ -9,6 +9,6 @@
 #import <UIKit/UIKit.h>
 #import <Foundation/Foundation.h>
 
-@interface NmffViewController : UIViewController <UITableViewDelegate>
+@interface NmffViewController : UIViewController <UITableViewDelegate, UIActionSheetDelegate>
 
 @end

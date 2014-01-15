@@ -43,9 +43,9 @@
     return self;
 }
 
-- (void)alphabetizeList {
+- (void)sortListDirection: (BOOL) direction {
 
-    NSSortDescriptor *nameDescriptor = [[NSSortDescriptor alloc] initWithKey:@"name" ascending:YES];
+    NSSortDescriptor *nameDescriptor = [[NSSortDescriptor alloc] initWithKey:@"name" ascending:direction];
 
     NSArray *sortDescriptors = @[nameDescriptor];
 
