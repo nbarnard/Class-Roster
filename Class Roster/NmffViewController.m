@@ -47,8 +47,6 @@
 }
 
 - (IBAction) sortButtonPressed:(id)sender {
-
-
     UIActionSheet *sortDirectionActionSheet = [[UIActionSheet alloc] initWithTitle:@"Sort direction" delegate:self cancelButtonTitle:@"Cancel" destructiveButtonTitle:nil otherButtonTitles:@"A - Z", @"Z - A", nil];
 
     [sortDirectionActionSheet showInView:_myTableView];

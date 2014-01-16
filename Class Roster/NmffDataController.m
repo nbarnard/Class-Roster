@@ -33,8 +33,17 @@
     for (NSDictionary *individual in individualDict) {
         NSString *name = [individual objectForKey:@"name"];
         UIImage *image = [UIImage new];
+        NSString *role = [individual objectForKey:@"role"];
 
-        [individuals addObject: [[NmffIndividual alloc] initWithName:name andRole:Student andImage:image]];
+        enum roleType individualRole = Unknown;
+
+        if ([role isEqualToString:@"student"]) {
+            individualRole = Student;
+        } else if ([role isEqualToString:@"instructor"]){
+            individualRole = Instructor;
+        }
+
+        [individuals addObject: [[NmffIndividual alloc] initWithName:name andRole:individualRole andImage:image]];
     }
 
         _myIndividualsArray = [[NSArray alloc] initWithArray:individuals];
@@ -65,7 +74,26 @@
     NmffIndividual *currentIndividual = [_myIndividualsArray objectAtIndex:indexPath.row];
 
     cell.textLabel.text = currentIndividual.name;
-    
+
+    NSString *roleText = [NSString new];
+
+    switch ((int)currentIndividual.individualRole) {
+        case Student:
+            roleText = @"Student";
+            break;
+        case Instructor:
+            roleText = @"Instructor";
+            break;
+        case Adminstrator:
+            roleText = @"Adminstrator";
+            break;
+        default: //Also catches Unknown Type
+            roleText = @"Unknown";
+            break;
+    }
+
+    cell.detailTextLabel.text = roleText;
+
     return cell;
     
 }

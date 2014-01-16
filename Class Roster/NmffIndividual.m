@@ -11,7 +11,7 @@
 
 @implementation NmffIndividual
 
-- (instancetype) initWithName: (NSString *)name andRole:(roleType *) individualRole andImage:(UIImage *) individualImage {
+- (instancetype) initWithName: (NSString *)name andRole:(enum roleType) individualRole andImage:(UIImage *) individualImage {
     if (self = [super init]) {
         _name = name;
         _individualRole = individualRole;

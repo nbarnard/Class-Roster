@@ -8,18 +8,20 @@
 
 #import <Foundation/Foundation.h>
 
-typedef enum {
+typedef enum roleType {
     Student = 0,
     Instructor = 1,
-    Adminstrator = 2
+    Adminstrator = 2,
+    Unknown = 3
 } roleType;
+
 
 @interface NmffIndividual : NSObject
 
 @property (nonatomic) NSString *name;
-@property (nonatomic) roleType *individualRole;
+@property (nonatomic) enum roleType individualRole;
 @property (nonatomic) UIImage *individualImage;
 
-- (instancetype)initWithName: (NSString *)name andRole:(roleType *)individualRole andImage:(UIImage *)individualImage;
+- (instancetype)initWithName: (NSString *)name andRole:(enum roleType)individualRole andImage:(UIImage *)individualImage;
 
 @end

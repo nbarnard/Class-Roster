@@ -9,6 +9,7 @@
 #import "NmffDetailViewController.h"
 
 @interface NmffDetailViewController ()
+@property (weak, nonatomic) IBOutlet UIView *NmffDetailView;
 
 @end
 
@@ -33,6 +34,51 @@
     
 }
 
+- (IBAction)AddPhotoButtonTapped:(id)sender {
+
+    UIActionSheet *photoSourceActionSheet = [[UIActionSheet alloc] initWithTitle:@"Select Source" delegate:self cancelButtonTitle:@"Cancel" destructiveButtonTitle:nil otherButtonTitles:@"Camera", @"Photo Gallery", nil];
+
+
+    [photoSourceActionSheet showInView: _NmffDetailView];
+
+}
+
+- (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex {
+    NSString *buttonTapped = [actionSheet buttonTitleAtIndex:buttonIndex];
+
+    UIImagePickerController *imagePicker = [UIImagePickerController new];
+
+    imagePicker.delegate = self;
+    imagePicker.allowsEditing = YES;
+
+
+    if([buttonTapped isEqualToString:@"Camera"]) {
+        imagePicker.sourceType = UIImagePickerControllerSourceTypeCamera;
+    } else if ([buttonTapped isEqualToString:@"Photo Gallery"]) {
+        imagePicker.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
+    } else {
+        return;
+    }
+
+    [self presentViewController:imagePicker animated:TRUE completion:nil];
+
+}
+
+-(void) imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info {
+    [self dismissViewControllerAnimated:YES completion:^{
+        UIImage *editedImage = [info objectForKey:UIImagePickerControllerEditedImage];
+        NSData *jpgData = UIImageJPEGRepresentation(editedImage, .55);
+        NSString *individualName = [self.title stringByReplacingOccurrencesOfString:@" " withString:@""];
+        NSLog(@"%@", individualName);
+
+    }];
+}
+
+- (NSString *)documentDirectoryPath{
+//    NSURL *documentsURL = [[[NSFileManager defaultManager] URLForDirectory:NSDocumentDirectory inDomain:NSUserDomainMask] lastObject];
+//    return [documentsURL path];
+    return @"bite me";
+}
 
 - (void)didReceiveMemoryWarning
 {
