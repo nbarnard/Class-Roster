@@ -9,6 +9,8 @@
 #import "NmffDataController.h"
 #import "NmffIndividual.h"
 #import "NmffViewController.h"
+#import "NmffSharedImageProcessor.h"
+#import <QuartzCore/CALayer.h>
 
 @interface NmffDataController()
 
@@ -77,7 +79,7 @@
 
     NSString *roleText = [NSString new];
 
-    switch ((int)currentIndividual.individualRole) {
+    switch (currentIndividual.individualRole) {
         case Student:
             roleText = @"Student";
             break;
@@ -87,12 +89,23 @@
         case Adminstrator:
             roleText = @"Adminstrator";
             break;
-        default: //Also catches Unknown Type
+        default: //Also catches Unknown enum Type
             roleText = @"Unknown";
             break;
     }
 
     cell.detailTextLabel.text = roleText;
+
+    NSString *indvidualImageFileName = [[NmffSharedImageProcessor sharedProcessor] getIndvidualImageFileNameWithName:currentIndividual.name];
+
+    UIImage *individualImage = [UIImage imageWithContentsOfFile:indvidualImageFileName];
+
+    cell.imageView.image = individualImage;
+
+    CALayer *cellImageLayer = cell.imageView.layer;
+
+    [cellImageLayer setCornerRadius:33];
+    [cellImageLayer setMasksToBounds:TRUE];
 
     return cell;
     

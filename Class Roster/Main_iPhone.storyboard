@@ -22,7 +22,7 @@
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="myCell" textLabel="GPq-Ww-wA1" detailTextLabel="Plg-Jd-eZo" style="IBUITableViewCellStyleSubtitle" id="Fea-aS-dPr">
-                                        <rect key="frame" x="0.0" y="86" width="320" height="44"/>
+                                        <rect key="frame" x="0.0" y="22" width="320" height="44"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Fea-aS-dPr" id="vDg-CF-1yt">
                                             <rect key="frame" x="0.0" y="0.0" width="287" height="43"/>
@@ -80,8 +80,8 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
-                        <outlet property="alphabetizeButton" destination="ftQ-j7-wFw" id="eWy-6p-qNp"/>
                         <outlet property="myTableView" destination="HYX-Rb-8CE" id="g8I-GW-1bT"/>
+                        <outlet property="sortbutton" destination="ftQ-j7-wFw" id="e8X-fj-Bje"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="x5A-6p-PRh" sceneMemberID="firstResponder"/>

@@ -14,7 +14,7 @@
 @interface NmffViewController ()
 @property (weak, nonatomic) IBOutlet UITableView *myTableView;
 @property (strong,nonatomic) NmffDataController *myDataSource;
-@property (weak, nonatomic) IBOutlet UIBarButtonItem *alphabetizeButton;
+@property (weak, nonatomic) IBOutlet UIBarButtonItem *sortbutton;
 
 @end
 
@@ -46,9 +46,13 @@
     }
 }
 
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    [self.myTableView reloadData];
+}
+
 - (IBAction) sortButtonPressed:(id)sender {
     UIActionSheet *sortDirectionActionSheet = [[UIActionSheet alloc] initWithTitle:@"Sort direction" delegate:self cancelButtonTitle:@"Cancel" destructiveButtonTitle:nil otherButtonTitles:@"A - Z", @"Z - A", nil];
-
     [sortDirectionActionSheet showInView:_myTableView];
 
 }

@@ -7,6 +7,7 @@
 //
 
 #import "NmffDetailViewController.h"
+#import "NmffSharedImageProcessor.h"
 
 @interface NmffDetailViewController ()
 @property (weak, nonatomic) IBOutlet UIView *NmffDetailView;
@@ -36,48 +37,67 @@
 
 - (IBAction)AddPhotoButtonTapped:(id)sender {
 
-    UIActionSheet *photoSourceActionSheet = [[UIActionSheet alloc] initWithTitle:@"Select Source" delegate:self cancelButtonTitle:@"Cancel" destructiveButtonTitle:nil otherButtonTitles:@"Camera", @"Photo Gallery", nil];
+
+    UIActionSheet *photoSourceActionSheet = [[UIActionSheet alloc] initWithTitle: @"Pick Photo"
+                                                                        delegate: self
+                                                               cancelButtonTitle:@"cancel"
+                                                          destructiveButtonTitle:nil
+                                                               otherButtonTitles:@"Camera", @"Photo Library", nil];
 
 
-    [photoSourceActionSheet showInView: _NmffDetailView];
 
+    if ([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera]) {
+        [photoSourceActionSheet showInView: _NmffDetailView];
+    } else if ([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypePhotoLibrary]) {
+        [self getImage:PhotoGallery];
+    }
 }
 
 - (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex {
     NSString *buttonTapped = [actionSheet buttonTitleAtIndex:buttonIndex];
 
+    if([buttonTapped isEqualToString:@"Camera"]) {
+        [self getImage:Camera];
+    } else if ([buttonTapped isEqualToString:@"Photo Library"]) {
+        [self getImage:PhotoGallery];
+    } else {
+        return;
+    }
+}
+
+typedef enum imageSource {
+    Camera = 0,
+    PhotoGallery = 1
+} imageSource;
+
+- (void) getImage:(imageSource) sourcetype {
     UIImagePickerController *imagePicker = [UIImagePickerController new];
 
     imagePicker.delegate = self;
     imagePicker.allowsEditing = YES;
 
-
-    if([buttonTapped isEqualToString:@"Camera"]) {
-        imagePicker.sourceType = UIImagePickerControllerSourceTypeCamera;
-    } else if ([buttonTapped isEqualToString:@"Photo Gallery"]) {
-        imagePicker.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
-    } else {
-        return;
+    switch (sourcetype){
+        case Camera:
+            imagePicker.sourceType = UIImagePickerControllerSourceTypeCamera;
+            break;
+        case PhotoGallery:
+            imagePicker.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
+            break;
     }
 
     [self presentViewController:imagePicker animated:TRUE completion:nil];
-
 }
 
--(void) imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info {
+
+- (void) imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info {
     [self dismissViewControllerAnimated:YES completion:^{
         UIImage *editedImage = [info objectForKey:UIImagePickerControllerEditedImage];
         NSData *jpgData = UIImageJPEGRepresentation(editedImage, .55);
-        NSString *individualName = [self.title stringByReplacingOccurrencesOfString:@" " withString:@""];
-        NSLog(@"%@", individualName);
 
+        NSString *indvidualImageFileName = [[NmffSharedImageProcessor sharedProcessor] getIndvidualImageFileNameWithName:self.title];
+
+        [jpgData writeToFile:indvidualImageFileName atomically:TRUE];
     }];
-}
-
-- (NSString *)documentDirectoryPath{
-//    NSURL *documentsURL = [[[NSFileManager defaultManager] URLForDirectory:NSDocumentDirectory inDomain:NSUserDomainMask] lastObject];
-//    return [documentsURL path];
-    return @"bite me";
 }
 
 - (void)didReceiveMemoryWarning
