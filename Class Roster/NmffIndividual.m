@@ -11,17 +11,19 @@
 
 @implementation NmffIndividual
 
-- (instancetype) initWithName: (NSString *)name andRole:(enum roleType) individualRole {
+- (instancetype) initWithName: (NSString *)name andRole:(enum roleType) role {
     if (self = [super init]) {
         _name = name;
-        _individualRole = individualRole;
+        _role = role;
 
         NSString *individualImageFileName = [[NmffSharedImageProcessor sharedProcessor] getIndvidualImageFileNameWithName:_name];
 
-        _individualImage = [UIImage imageWithContentsOfFile:individualImageFileName];
+        _img = [UIImage imageWithContentsOfFile:individualImageFileName];
 
     }
     return self;
 }
+
+
 
 @end

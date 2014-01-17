@@ -21,7 +21,7 @@
 
     NSString *roleText = [NSString new];
 
-    switch (individual.individualRole) {
+    switch (individual.role) {
         case Student:
             roleText = @"Student";
             break;
@@ -38,7 +38,7 @@
 
     self.detailTextLabel.text = roleText;
 
-    UIImage *individualImage = individual.individualImage;
+    UIImage *individualImage = individual.img;
 
     self.imageView.image = individualImage;
 
