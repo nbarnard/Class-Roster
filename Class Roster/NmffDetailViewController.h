@@ -7,10 +7,11 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "NmffIndividual.h"
 
 @interface NmffDetailViewController : UIViewController <UIActionSheetDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate>
 
-@property (strong, nonatomic) NSString *individualName;
+@property (strong, nonatomic) NmffIndividual *individual;
 @property (strong, nonatomic) NSString *sectionName;
 
 @end

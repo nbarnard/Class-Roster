@@ -7,15 +7,19 @@
 //
 
 #import "NmffIndividual.h"
-
+#import "NmffSharedImageProcessor.h"
 
 @implementation NmffIndividual
 
-- (instancetype) initWithName: (NSString *)name andRole:(enum roleType) individualRole andImage:(UIImage *) individualImage {
+- (instancetype) initWithName: (NSString *)name andRole:(enum roleType) individualRole {
     if (self = [super init]) {
         _name = name;
         _individualRole = individualRole;
-        _individualImage = individualImage;
+
+        NSString *individualImageFileName = [[NmffSharedImageProcessor sharedProcessor] getIndvidualImageFileNameWithName:_name];
+
+        _individualImage = [UIImage imageWithContentsOfFile:individualImageFileName];
+
     }
     return self;
 }

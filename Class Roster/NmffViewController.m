@@ -10,6 +10,7 @@
 #import "NmffDetailViewController.h"
 #import "NmffIndividual.h"
 #import "NmffDataController.h"
+#import "NmffCell.h"
 
 @interface NmffViewController ()
 @property (weak, nonatomic) IBOutlet UITableView *myTableView;
@@ -36,13 +37,12 @@
 
 - (void) prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
 
-    UITableViewCell *tapped = sender;
-
-    NSString *individual = tapped.textLabel.text;
+    NmffCell *tappedIndividual = sender;
 
     if ([segue.destinationViewController isKindOfClass:[NmffDetailViewController class]]) {
         NmffDetailViewController *destination = (NmffDetailViewController *)segue.destinationViewController;
-        destination.individualName = individual;
+        destination.individual = tappedIndividual.cellIndividual;
+
     }
 }
 

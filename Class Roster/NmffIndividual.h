@@ -22,6 +22,6 @@ typedef enum roleType {
 @property (nonatomic) enum roleType individualRole;
 @property (nonatomic) UIImage *individualImage;
 
-- (instancetype)initWithName: (NSString *)name andRole:(enum roleType)individualRole andImage:(UIImage *)individualImage;
+- (instancetype)initWithName: (NSString *)name andRole:(enum roleType)individualRole;
 
 @end

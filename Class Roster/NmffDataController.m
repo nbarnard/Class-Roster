@@ -9,8 +9,8 @@
 #import "NmffDataController.h"
 #import "NmffIndividual.h"
 #import "NmffViewController.h"
-#import "NmffSharedImageProcessor.h"
 #import <QuartzCore/CALayer.h>
+#import "NmffCell.h"
 
 @interface NmffDataController()
 
@@ -34,7 +34,6 @@
 
     for (NSDictionary *individual in individualDict) {
         NSString *name = [individual objectForKey:@"name"];
-        UIImage *image = [UIImage new];
         NSString *role = [individual objectForKey:@"role"];
 
         enum roleType individualRole = Unknown;
@@ -45,7 +44,7 @@
             individualRole = Instructor;
         }
 
-        [individuals addObject: [[NmffIndividual alloc] initWithName:name andRole:individualRole andImage:image]];
+        [individuals addObject: [[NmffIndividual alloc] initWithName:name andRole:individualRole]];
     }
 
         _myIndividualsArray = [[NSArray alloc] initWithArray:individuals];
@@ -71,44 +70,13 @@
 
 -(UITableViewCell *) tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
 
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"myCell" forIndexPath: indexPath];
+    NmffCell *cell = [tableView dequeueReusableCellWithIdentifier:@"myCell" forIndexPath: indexPath];
 
-    NmffIndividual *currentIndividual = [_myIndividualsArray objectAtIndex:indexPath.row];
+    NmffIndividual *cellIndividual = [_myIndividualsArray objectAtIndex:indexPath.row];
 
-    cell.textLabel.text = currentIndividual.name;
-
-    NSString *roleText = [NSString new];
-
-    switch (currentIndividual.individualRole) {
-        case Student:
-            roleText = @"Student";
-            break;
-        case Instructor:
-            roleText = @"Instructor";
-            break;
-        case Adminstrator:
-            roleText = @"Adminstrator";
-            break;
-        default: //Also catches Unknown enum Type
-            roleText = @"Unknown";
-            break;
-    }
-
-    cell.detailTextLabel.text = roleText;
-
-    NSString *indvidualImageFileName = [[NmffSharedImageProcessor sharedProcessor] getIndvidualImageFileNameWithName:currentIndividual.name];
-
-    UIImage *individualImage = [UIImage imageWithContentsOfFile:indvidualImageFileName];
-
-    cell.imageView.image = individualImage;
-
-    CALayer *cellImageLayer = cell.imageView.layer;
-
-    [cellImageLayer setCornerRadius:33];
-    [cellImageLayer setMasksToBounds:TRUE];
+    [cell updateWithIndividual:cellIndividual];
 
     return cell;
-    
 }
 
 @end
