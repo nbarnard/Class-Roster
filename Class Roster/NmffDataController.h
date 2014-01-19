@@ -11,6 +11,9 @@
 
 @interface NmffDataController : NSObject <UITableViewDataSource>
 
++ (NmffDataController *)sharedController;
+
 - (void)sortListDirection: (BOOL) direction;
+- (NSString *)getIndvidualImageFileNameWithName: (NSString *)individualName;
 
 @end

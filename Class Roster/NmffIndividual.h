@@ -15,7 +15,6 @@ typedef enum roleType {
     Unknown = 3
 } roleType;
 
-
 @interface NmffIndividual : NSObject
 
 @property (nonatomic) NSString *name;

@@ -7,8 +7,6 @@
 //
 
 #import "NmffCell.h"
-#import "NmffSharedImageProcessor.h"
-
 
 @implementation NmffCell
 

@@ -20,12 +20,31 @@
 
 @implementation NmffDataController
 
++ (NmffDataController *)sharedController{
+
+    static dispatch_once_t pred;
+    static NmffDataController *shared = nil;
+
+    dispatch_once(&pred, ^{
+        shared = [[NmffDataController alloc] init];
+    });
+
+    return shared;
+}
+
+
 
 - (id)init
 {
 
     if ( self = [super init]) {
+        _myIndividualsArray = [self loadIndividualFromPlistBundle];
+    }
     
+    return self;
+}
+
+- (NSArray *) loadIndividualFromPlistBundle {
     NSString *fileName = [[NSBundle mainBundle] pathForResource: @"Bootcamp" ofType:@"plist"];
 
     NSMutableArray *individuals = [NSMutableArray new];
@@ -47,10 +66,7 @@
         [individuals addObject: [[NmffIndividual alloc] initWithName:name andRole:individualRole]];
     }
 
-        _myIndividualsArray = [[NSArray alloc] initWithArray:individuals];
-    }
-
-    return self;
+    return [[NSArray alloc] initWithArray:individuals];
 }
 
 - (void)sortListDirection: (BOOL) direction {
@@ -77,6 +93,16 @@
     [cell updateWithIndividual:cellIndividual];
 
     return cell;
+}
+
+- (NSString *)getIndvidualImageFileNameWithName: (NSString *)individualName {
+
+    NSString *individualConcatenatedName = [individualName stringByReplacingOccurrencesOfString:@" " withString:@""];
+    NSURL *documentsURL = [[[NSFileManager defaultManager] URLsForDirectory:NSDocumentDirectory inDomains:NSUserDomainMask] lastObject];
+    NSString *documentsPath = [documentsURL path];
+
+    NSString *fileName = [[NSString alloc] initWithFormat:@"%@/%@.png", documentsPath, individualConcatenatedName, nil];
+    return fileName;
 }
 
 @end

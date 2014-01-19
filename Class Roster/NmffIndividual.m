@@ -7,7 +7,7 @@
 //
 
 #import "NmffIndividual.h"
-#import "NmffSharedImageProcessor.h"
+#import "NmffDataController.h"
 
 @implementation NmffIndividual
 
@@ -16,7 +16,7 @@
         _name = name;
         _role = role;
 
-        NSString *individualImageFileName = [[NmffSharedImageProcessor sharedProcessor] getIndvidualImageFileNameWithName:_name];
+        NSString *individualImageFileName = [[NmffDataController sharedController] getIndvidualImageFileNameWithName:_name];
 
         _img = [UIImage imageWithContentsOfFile:individualImageFileName];
 

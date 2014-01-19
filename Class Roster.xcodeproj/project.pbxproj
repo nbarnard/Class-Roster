@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		111F197018860B5000D54F8C /* NmffDataController.m in Sources */ = {isa = PBXBuildFile; fileRef = 111F196F18860B5000D54F8C /* NmffDataController.m */; };
-		111F29EF1887C3F6001B3235 /* NmffSharedImageProcessor.m in Sources */ = {isa = PBXBuildFile; fileRef = 111F29EE1887C3F6001B3235 /* NmffSharedImageProcessor.m */; };
 		1144F19C188894F700C8D730 /* NmffCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1144F19B188894F700C8D730 /* NmffCell.m */; };
 		11D294EE1885E096004C0A08 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 11D294ED1885E096004C0A08 /* Foundation.framework */; };
 		11D294F01885E096004C0A08 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 11D294EF1885E096004C0A08 /* CoreGraphics.framework */; };
@@ -42,8 +41,6 @@
 /* Begin PBXFileReference section */
 		111F196E18860B5000D54F8C /* NmffDataController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NmffDataController.h; sourceTree = "<group>"; };
 		111F196F18860B5000D54F8C /* NmffDataController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NmffDataController.m; sourceTree = "<group>"; };
-		111F29ED1887C3F6001B3235 /* NmffSharedImageProcessor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NmffSharedImageProcessor.h; sourceTree = "<group>"; };
-		111F29EE1887C3F6001B3235 /* NmffSharedImageProcessor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NmffSharedImageProcessor.m; sourceTree = "<group>"; };
 		1144F19A188894F700C8D730 /* NmffCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NmffCell.h; sourceTree = "<group>"; };
 		1144F19B188894F700C8D730 /* NmffCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NmffCell.m; sourceTree = "<group>"; };
 		11D294EA1885E096004C0A08 /* Class Roster.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Class Roster.app"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -96,6 +93,31 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		116BBA44188C93A40003979A /* View */ = {
+			isa = PBXGroup;
+			children = (
+				11D2951C1885E0C1004C0A08 /* Main_iPhone.storyboard */,
+				11D2951E1885E0ED004C0A08 /* NmffViewController.h */,
+				11D2951F1885E0ED004C0A08 /* NmffViewController.m */,
+				11D295271885E2FD004C0A08 /* NmffDetailViewController.h */,
+				11D295281885E2FD004C0A08 /* NmffDetailViewController.m */,
+				1144F19A188894F700C8D730 /* NmffCell.h */,
+				1144F19B188894F700C8D730 /* NmffCell.m */,
+			);
+			name = View;
+			sourceTree = "<group>";
+		};
+		116BBA45188C93E40003979A /* Data */ = {
+			isa = PBXGroup;
+			children = (
+				111F196E18860B5000D54F8C /* NmffDataController.h */,
+				111F196F18860B5000D54F8C /* NmffDataController.m */,
+				11D2952B1885EC07004C0A08 /* NmffIndividual.h */,
+				11D2952C1885EC07004C0A08 /* NmffIndividual.m */,
+			);
+			name = Data;
+			sourceTree = "<group>";
+		};
 		11D294E11885E096004C0A08 = {
 			isa = PBXGroup;
 			children = (
@@ -129,22 +151,8 @@
 		11D294F31885E096004C0A08 /* Class Roster */ = {
 			isa = PBXGroup;
 			children = (
-				11D294FC1885E096004C0A08 /* NmffAppDelegate.h */,
-				11D294FD1885E096004C0A08 /* NmffAppDelegate.m */,
-				11D295271885E2FD004C0A08 /* NmffDetailViewController.h */,
-				11D295281885E2FD004C0A08 /* NmffDetailViewController.m */,
-				111F29ED1887C3F6001B3235 /* NmffSharedImageProcessor.h */,
-				111F29EE1887C3F6001B3235 /* NmffSharedImageProcessor.m */,
-				11D2951C1885E0C1004C0A08 /* Main_iPhone.storyboard */,
-				11D2951E1885E0ED004C0A08 /* NmffViewController.h */,
-				11D2951F1885E0ED004C0A08 /* NmffViewController.m */,
-				111F196E18860B5000D54F8C /* NmffDataController.h */,
-				111F196F18860B5000D54F8C /* NmffDataController.m */,
-				1144F19A188894F700C8D730 /* NmffCell.h */,
-				1144F19B188894F700C8D730 /* NmffCell.m */,
-				11D2952B1885EC07004C0A08 /* NmffIndividual.h */,
-				11D2952C1885EC07004C0A08 /* NmffIndividual.m */,
-				11D2952E1885F126004C0A08 /* Bootcamp.plist */,
+				116BBA45188C93E40003979A /* Data */,
+				116BBA44188C93A40003979A /* View */,
 				11D294FF1885E096004C0A08 /* Images.xcassets */,
 				11D294F41885E096004C0A08 /* Supporting Files */,
 			);
@@ -154,6 +162,9 @@
 		11D294F41885E096004C0A08 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				11D2952E1885F126004C0A08 /* Bootcamp.plist */,
+				11D294FC1885E096004C0A08 /* NmffAppDelegate.h */,
+				11D294FD1885E096004C0A08 /* NmffAppDelegate.m */,
 				11D294F51885E096004C0A08 /* Class Roster-Info.plist */,
 				11D294F61885E096004C0A08 /* InfoPlist.strings */,
 				11D294F91885E096004C0A08 /* main.m */,
@@ -281,7 +292,6 @@
 				11D294FA1885E096004C0A08 /* main.m in Sources */,
 				11D294FE1885E096004C0A08 /* NmffAppDelegate.m in Sources */,
 				11D295291885E2FD004C0A08 /* NmffDetailViewController.m in Sources */,
-				111F29EF1887C3F6001B3235 /* NmffSharedImageProcessor.m in Sources */,
 				1144F19C188894F700C8D730 /* NmffCell.m in Sources */,
 				11D295201885E0ED004C0A08 /* NmffViewController.m in Sources */,
 				111F197018860B5000D54F8C /* NmffDataController.m in Sources */,

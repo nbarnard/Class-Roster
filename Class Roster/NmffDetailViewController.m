@@ -7,7 +7,7 @@
 //
 
 #import "NmffDetailViewController.h"
-#import "NmffSharedImageProcessor.h"
+#import "NmffDataController.h"
 #import "NmffIndividual.h"
 #import <UIKit/UIKit.h>
 
@@ -135,7 +135,7 @@ typedef enum imageSource {
         UIImage *editedImage = [info objectForKey:UIImagePickerControllerEditedImage];
         NSData *jpgData = UIImageJPEGRepresentation(editedImage, .55);
 
-        NSString *individualImageFileName = [[NmffSharedImageProcessor sharedProcessor] getIndvidualImageFileNameWithName:self.title];
+        NSString *individualImageFileName = [[NmffDataController sharedController] getIndvidualImageFileNameWithName:self.title];
 
         [jpgData writeToFile:individualImageFileName atomically:TRUE];
 
