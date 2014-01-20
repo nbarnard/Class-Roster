@@ -59,27 +59,32 @@
 
 - (NSArray *)loadIndividualsFromBundlePList {
     NSString *fileName = [[NSBundle mainBundle] pathForResource: @"Bootcamp" ofType:@"plist"];
+    NSArray *individualDict = [[NSArray alloc] initWithContentsOfFile:fileName];
 
     NSMutableArray *individuals = [NSMutableArray new];
 
-    NSArray *individualDict = [[NSArray alloc] initWithContentsOfFile:fileName];
-
     for (NSDictionary *individual in individualDict) {
         NSString *name = [individual objectForKey:@"name"];
-        NSString *role = [individual objectForKey:@"role"];
-
-        enum roleType individualRole = Unknown;
-
-        if ([role isEqualToString:@"student"]) {
-            individualRole = Student;
-        } else if ([role isEqualToString:@"instructor"]){
-            individualRole = Instructor;
-        }
-
+        roleType individualRole = [self roleTypeFromNSString:[individual objectForKey:@"role"]];
         [individuals addObject: [[NmffIndividual alloc] initWithName:name andRole:individualRole]];
     }
 
     return [[NSArray alloc] initWithArray:individuals];
+}
+
+- (roleType)roleTypeFromNSString: (NSString *)role {
+
+    roleType individualRole;
+
+    if ([role isEqualToString:@"student"]) {
+        individualRole = Student;
+    } else if ([role isEqualToString:@"instructor"]){
+        individualRole = Instructor;
+    } else {
+        individualRole = Unknown;
+    }
+
+    return individualRole;
 }
 
 #pragma mark - Sorting

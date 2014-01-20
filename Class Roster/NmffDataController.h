@@ -9,6 +9,14 @@
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
 
+#pragma mark - sortDirection typedef
+
+// Make this crystal clear as to what NO and YES are
+typedef enum sortDirection {
+    descending = NO,
+    ascending = YES
+} sortDirection;
+
 @interface NmffDataController : NSObject <UITableViewDataSource>
 
 + (NmffDataController *)sharedController;

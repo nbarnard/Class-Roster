@@ -11,7 +11,7 @@
 
 @interface NmffCell : UITableViewCell
 
-@property (nonatomic) NmffIndividual *cellIndividual;
+@property (nonatomic) NmffIndividual *individual;
 
 - (void)updateWithIndividual:(NmffIndividual *)individual;
 

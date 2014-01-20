@@ -31,8 +31,6 @@
     _myTableView.dataSource = _myDataSource;
 
     self.title = @"Roster";
-
-    // Do any additional setup after loading the view, typically from a nib.
 }
 
 - (void)viewWillAppear: (BOOL)animated {
@@ -40,21 +38,23 @@
     [self.myTableView reloadData];
 }
 
-
 - (void)prepareForSegue: (UIStoryboardSegue *)segue sender: (id)sender {
     NmffCell *tappedIndividual = sender;
 
     if ([segue.destinationViewController isKindOfClass:[NmffDetailViewController class]]) {
         NmffDetailViewController *destination = (NmffDetailViewController *)segue.destinationViewController;
-        destination.individual = tappedIndividual.cellIndividual;
-        
+        destination.individual = tappedIndividual.individual;
     }
 }
 
 #pragma mark - Sort Button
 
 - (IBAction)sortButtonPressed: (id)sender {
-    UIActionSheet *sortDirectionActionSheet = [[UIActionSheet alloc] initWithTitle:@"Sort direction" delegate:self cancelButtonTitle:@"Cancel" destructiveButtonTitle:nil otherButtonTitles:@"A - Z", @"Z - A", nil];
+    UIActionSheet *sortDirectionActionSheet = [[UIActionSheet alloc] initWithTitle: @"Sort direction"
+                                                                          delegate: self
+                                                                 cancelButtonTitle: @"Cancel"
+                                                            destructiveButtonTitle: nil
+                                                                 otherButtonTitles :@"A - Z", @"Z - A", nil];
     [sortDirectionActionSheet showInView:_myTableView];
 
 }
@@ -63,18 +63,17 @@
 
 - (void)actionSheet: (UIActionSheet *)actionSheet clickedButtonAtIndex: (NSInteger)buttonIndex {
 
-    NSString *buttonTapped = [actionSheet buttonTitleAtIndex:buttonIndex];
+    NSString *buttonTapped = [actionSheet buttonTitleAtIndex: buttonIndex];
 
     if([buttonTapped isEqualToString:@"A - Z"]) {
-        [_myDataSource sortListDirection:YES];
+        [_myDataSource sortListDirection: ascending];
     } else if ([buttonTapped isEqualToString:@"Z - A"]) {
-        [_myDataSource sortListDirection:NO];
+        [_myDataSource sortListDirection: descending];
     } else {
         return;
     }
 
     [_myTableView reloadData];
-
 }
 
 #pragma mark - boilerplate

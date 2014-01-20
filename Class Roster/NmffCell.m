@@ -13,14 +13,23 @@
 #pragma mark - Update Cell
 
 - (void)updateWithIndividual: (NmffIndividual *)individual {
-
-    _cellIndividual = individual;
+    _individual = individual;
 
     self.textLabel.text = individual.name;
+    self.detailTextLabel.text = [self stringWithRole:individual.role];
+    self.imageView.image = individual.img;
 
-    NSString *roleText = [NSString new];
+    CALayer *cellImageLayer = self.imageView.layer;
+    [cellImageLayer setCornerRadius:33];
+    [cellImageLayer setMasksToBounds:TRUE];
 
-    switch (individual.role) {
+    return;
+}
+
+- (NSString *)stringWithRole: (roleType)individual {
+
+    NSString *roleText = [[NSString alloc] init];
+    switch (individual) {
         case Student:
             roleText = @"Student";
             break;
@@ -34,19 +43,7 @@
             roleText = @"Unknown";
             break;
     }
-
-    self.detailTextLabel.text = roleText;
-
-    UIImage *individualImage = individual.img;
-
-    self.imageView.image = individualImage;
-
-    CALayer *cellImageLayer = self.imageView.layer;
-
-    [cellImageLayer setCornerRadius:33];
-    [cellImageLayer setMasksToBounds:TRUE];
-
-    return;
+    return roleText;
 }
 
 
