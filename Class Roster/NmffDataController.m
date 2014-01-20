@@ -32,19 +32,24 @@
     return shared;
 }
 
-
-
-- (id)init
+- (NmffDataController *) loadInitialData
 {
+        NSURL *individualDataFile = [[self applicationDocumentsDirectory] URLByAppendingPathComponent:@"individualDataFile"];
+        if([[NSFileManager defaultManager] fileExistsAtPath: [individualDataFile path]])
+        {
+            _myIndividualsArray = [self loadIndividualsFromFile:individualDataFile];
+        } else {
+            _myIndividualsArray = [self loadIndividualsFromBundlePList];
+        }
 
-    if ( self = [super init]) {
-        _myIndividualsArray = [self loadIndividualFromPlistBundle];
-    }
-    
     return self;
 }
 
-- (NSArray *) loadIndividualFromPlistBundle {
+- (NSArray *) loadIndividualsFromFile:(NSURL *) individualDataFile {
+    return [NSKeyedUnarchiver unarchiveObjectWithFile:[individualDataFile path]];
+}
+
+- (NSArray *) loadIndividualsFromBundlePList {
     NSString *fileName = [[NSBundle mainBundle] pathForResource: @"Bootcamp" ofType:@"plist"];
 
     NSMutableArray *individuals = [NSMutableArray new];
@@ -93,6 +98,12 @@
     [cell updateWithIndividual:cellIndividual];
 
     return cell;
+}
+
+// returns the URL to the application's Documents directory
+- (NSURL *)applicationDocumentsDirectory
+{
+    return [[[NSFileManager defaultManager] URLsForDirectory:NSDocumentDirectory inDomains:NSUserDomainMask] lastObject];
 }
 
 - (NSString *)getIndvidualImageFileNameWithName: (NSString *)individualName {

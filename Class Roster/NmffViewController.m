@@ -26,7 +26,7 @@
     [super viewDidLoad];
 
     _myTableView.delegate = self;
-    _myDataSource = [NmffDataController sharedController];
+    _myDataSource = [[NmffDataController sharedController] loadInitialData];
     _myTableView.dataSource = _myDataSource;
 
     self.title = @"Roster";
