@@ -165,9 +165,9 @@ typedef enum imageSource {
 
     // Figure out which textField called us
     if(textField == _twitterTextField) {
-        _individual.twitter = textField.text;
+        [_individual updateWithName:_individual.name andRole:_individual.role andTwitter:textField.text andGithub:_individual.github];
     } else if (textField == _githubTextField) {
-        _individual.github = textField.text;
+        [_individual updateWithName:_individual.name andRole:_individual.role andTwitter:_individual.twitter andGithub:textField.text];
     }
 }
 

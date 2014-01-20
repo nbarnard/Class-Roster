@@ -15,14 +15,18 @@ typedef enum roleType {
     Unknown = 3
 } roleType;
 
-@interface NmffIndividual : NSObject
+@interface NmffIndividual : NSObject <NSCoding>
 
 @property (nonatomic) NSString *name;
-@property (nonatomic) enum roleType role;
+@property (nonatomic) roleType role;
 @property (nonatomic) UIImage *img;
 @property (nonatomic) NSString *github;
 @property (nonatomic) NSString *twitter;
 
-- (instancetype)initWithName: (NSString *)name andRole:(enum roleType)role;
+- (NmffIndividual *)initWithName: (NSString *)name andRole:(roleType)role;
+
+- (NmffIndividual *)initWithName: (NSString *)name andRole:(roleType)role andTwitter: (NSString *)twitter andGithub: (NSString *)github;
+
+- (void)updateWithName: (NSString *)name andRole:(roleType)role andTwitter: (NSString *)twitter andGithub: (NSString *)github;
 
 @end

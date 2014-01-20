@@ -32,12 +32,17 @@
     return shared;
 }
 
+- (NSString *) individualDataFileString {
+    NSURL *individualDataFile = [[self applicationDocumentsDirectory] URLByAppendingPathComponent:@"individualDataFile"];
+    return [individualDataFile path];
+}
+
 - (NmffDataController *) loadInitialData
 {
-        NSURL *individualDataFile = [[self applicationDocumentsDirectory] URLByAppendingPathComponent:@"individualDataFile"];
-        if([[NSFileManager defaultManager] fileExistsAtPath: [individualDataFile path]])
+        NSString *individualDataFileString = [self individualDataFileString];
+        if([[NSFileManager defaultManager] fileExistsAtPath: individualDataFileString])
         {
-            _myIndividualsArray = [self loadIndividualsFromFile:individualDataFile];
+            _myIndividualsArray = [self loadIndividualsFromFile:individualDataFileString];
         } else {
             _myIndividualsArray = [self loadIndividualsFromBundlePList];
         }
@@ -45,8 +50,14 @@
     return self;
 }
 
-- (NSArray *) loadIndividualsFromFile:(NSURL *) individualDataFile {
-    return [NSKeyedUnarchiver unarchiveObjectWithFile:[individualDataFile path]];
+- (NSArray *) loadIndividualsFromFile:(NSString *) individualDataFileString {
+    return [NSKeyedUnarchiver unarchiveObjectWithFile:individualDataFileString];
+}
+
+- (void)saveIndividualsToFile {
+    [NSKeyedArchiver archiveRootObject:_myIndividualsArray toFile:[self individualDataFileString]];
+
+    return;
 }
 
 - (NSArray *) loadIndividualsFromBundlePList {
