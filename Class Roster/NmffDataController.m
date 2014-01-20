@@ -9,18 +9,19 @@
 #import "NmffDataController.h"
 #import "NmffIndividual.h"
 #import "NmffViewController.h"
-#import <QuartzCore/CALayer.h>
 #import "NmffCell.h"
 
 @interface NmffDataController()
 
-@property (strong, nonatomic) NSArray *myIndividualsArray;
+@property (strong, nonatomic) NSArray *individualsArray;
 
 @end
 
 @implementation NmffDataController
 
-+ (NmffDataController *)sharedController{
+#pragma mark - Singleton Initializer
+
++ (NmffDataController *)sharedController {
 
     static dispatch_once_t pred;
     static NmffDataController *shared = nil;
@@ -32,35 +33,31 @@
     return shared;
 }
 
-- (NSString *) individualDataFileString {
-    NSURL *individualDataFile = [[self applicationDocumentsDirectory] URLByAppendingPathComponent:@"individualDataFile"];
-    return [individualDataFile path];
-}
+#pragma mark - Data Handling
 
-- (NmffDataController *) loadInitialData
-{
+- (NmffDataController *)loadInitialData {
         NSString *individualDataFileString = [self individualDataFileString];
         if([[NSFileManager defaultManager] fileExistsAtPath: individualDataFileString])
         {
-            _myIndividualsArray = [self loadIndividualsFromFile:individualDataFileString];
+            _individualsArray = [self loadIndividualsFromFile:individualDataFileString];
         } else {
-            _myIndividualsArray = [self loadIndividualsFromBundlePList];
+            _individualsArray = [self loadIndividualsFromBundlePList];
         }
 
     return self;
 }
 
-- (NSArray *) loadIndividualsFromFile:(NSString *) individualDataFileString {
+- (NSArray *)loadIndividualsFromFile: (NSString *)individualDataFileString {
     return [NSKeyedUnarchiver unarchiveObjectWithFile:individualDataFileString];
 }
 
 - (void)saveIndividualsToFile {
-    [NSKeyedArchiver archiveRootObject:_myIndividualsArray toFile:[self individualDataFileString]];
+    [NSKeyedArchiver archiveRootObject:_individualsArray toFile:[self individualDataFileString]];
 
     return;
 }
 
-- (NSArray *) loadIndividualsFromBundlePList {
+- (NSArray *)loadIndividualsFromBundlePList {
     NSString *fileName = [[NSBundle mainBundle] pathForResource: @"Bootcamp" ofType:@"plist"];
 
     NSMutableArray *individuals = [NSMutableArray new];
@@ -85,35 +82,45 @@
     return [[NSArray alloc] initWithArray:individuals];
 }
 
-- (void)sortListDirection: (BOOL) direction {
+#pragma mark - Sorting
+
+- (void)sortListDirection: (BOOL)direction {
 
     NSSortDescriptor *nameDescriptor = [[NSSortDescriptor alloc] initWithKey:@"name" ascending:direction];
 
     NSArray *sortDescriptors = @[nameDescriptor];
 
-    _myIndividualsArray = [_myIndividualsArray sortedArrayUsingDescriptors:sortDescriptors];
+    _individualsArray = [_individualsArray sortedArrayUsingDescriptors:sortDescriptors];
 
 }
 
--(NSInteger) tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+#pragma mark - UITableViewDataSource
 
-    return _myIndividualsArray.count;
+-(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+
+    return _individualsArray.count;
 }
 
--(UITableViewCell *) tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+-(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
 
     NmffCell *cell = [tableView dequeueReusableCellWithIdentifier:@"myCell" forIndexPath: indexPath];
 
-    NmffIndividual *cellIndividual = [_myIndividualsArray objectAtIndex:indexPath.row];
+    NmffIndividual *cellIndividual = [_individualsArray objectAtIndex:indexPath.row];
 
     [cell updateWithIndividual:cellIndividual];
 
     return cell;
 }
 
+#pragma mark - File Handling
+
+- (NSString *)individualDataFileString {
+    NSURL *individualDataFile = [[self applicationDocumentsDirectory] URLByAppendingPathComponent:@"individualDataFile"];
+    return [individualDataFile path];
+}
+
 // returns the URL to the application's Documents directory
-- (NSURL *)applicationDocumentsDirectory
-{
+- (NSURL *)applicationDocumentsDirectory {
     return [[[NSFileManager defaultManager] URLsForDirectory:NSDocumentDirectory inDomains:NSUserDomainMask] lastObject];
 }
 

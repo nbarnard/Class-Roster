@@ -21,8 +21,9 @@
 
 @implementation NmffViewController
 
-- (void)viewDidLoad
-{
+#pragma mark - UIViewController
+
+- (void)viewDidLoad {
     [super viewDidLoad];
 
     _myTableView.delegate = self;
@@ -34,30 +35,33 @@
     // Do any additional setup after loading the view, typically from a nib.
 }
 
+- (void)viewWillAppear: (BOOL)animated {
+    [super viewWillAppear:animated];
+    [self.myTableView reloadData];
+}
 
-- (void) prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
 
+- (void)prepareForSegue: (UIStoryboardSegue *)segue sender: (id)sender {
     NmffCell *tappedIndividual = sender;
 
     if ([segue.destinationViewController isKindOfClass:[NmffDetailViewController class]]) {
         NmffDetailViewController *destination = (NmffDetailViewController *)segue.destinationViewController;
         destination.individual = tappedIndividual.cellIndividual;
-
+        
     }
 }
 
-- (void)viewWillAppear:(BOOL)animated {
-    [super viewWillAppear:animated];
-    [self.myTableView reloadData];
-}
+#pragma mark - Sort Button
 
-- (IBAction) sortButtonPressed:(id)sender {
+- (IBAction)sortButtonPressed: (id)sender {
     UIActionSheet *sortDirectionActionSheet = [[UIActionSheet alloc] initWithTitle:@"Sort direction" delegate:self cancelButtonTitle:@"Cancel" destructiveButtonTitle:nil otherButtonTitles:@"A - Z", @"Z - A", nil];
     [sortDirectionActionSheet showInView:_myTableView];
 
 }
 
-- (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex {
+#pragma mark - UIActionSheetDelegate
+
+- (void)actionSheet: (UIActionSheet *)actionSheet clickedButtonAtIndex: (NSInteger)buttonIndex {
 
     NSString *buttonTapped = [actionSheet buttonTitleAtIndex:buttonIndex];
 
@@ -73,9 +77,9 @@
 
 }
 
+#pragma mark - boilerplate
 
-- (void)didReceiveMemoryWarning
-{
+- (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }

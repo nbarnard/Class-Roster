@@ -15,7 +15,7 @@
 
 - (void)sortListDirection: (BOOL) direction;
 - (NSString *)getIndvidualImageFileNameWithName: (NSString *)individualName;
-- (NmffDataController *) loadInitialData;
+- (NmffDataController *)loadInitialData;
 - (void)saveIndividualsToFile;
 
 @end

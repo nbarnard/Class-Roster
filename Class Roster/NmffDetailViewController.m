@@ -23,14 +23,9 @@
 
 @implementation NmffDetailViewController
 
-typedef enum imageSource {
-    Camera = 0,
-    PhotoGallery = 1
-} imageSource;
+#pragma mark - UIViewController
 
-
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
-{
+- (id)initWithNibName: (NSString *)nibNameOrNil bundle: (NSBundle *)nibBundleOrNil {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
         // Custom initialization
@@ -85,7 +80,9 @@ typedef enum imageSource {
     [_NmffDetailView addSubview:_NmffScrollDetailView];
 }
 
-- (IBAction)addPhotoButtonTapped:(id)sender {
+#pragma mark - IBAction - Photo Button
+
+- (IBAction)addPhotoButtonTapped: (id)sender {
     // Show an action sheet if both camera and photo library are available, if not go direclty to photogallery.
     if ([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera]) {
         UIActionSheet *photoSourceActionSheet = [[UIActionSheet alloc] initWithTitle: @"Pick Photo"
@@ -99,7 +96,14 @@ typedef enum imageSource {
     }
 }
 
-- (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex {
+#pragma mark - UIActionSheetDelegate to get image
+
+typedef enum imageSource {
+    Camera = 0,
+    PhotoGallery = 1
+} imageSource;
+
+- (void)actionSheet: (UIActionSheet *)actionSheet clickedButtonAtIndex: (NSInteger)buttonIndex {
     NSString *buttonTapped = [actionSheet buttonTitleAtIndex:buttonIndex];
 
     if([buttonTapped isEqualToString:@"Camera"]) {
@@ -111,7 +115,7 @@ typedef enum imageSource {
     }
 }
 
-- (void) getImage:(imageSource) sourcetype {
+- (void)getImage: (imageSource)sourcetype {
     UIImagePickerController *imagePicker = [UIImagePickerController new];
 
     imagePicker.delegate = self;
@@ -129,8 +133,9 @@ typedef enum imageSource {
     [self presentViewController:imagePicker animated:TRUE completion:nil];
 }
 
+#pragma mark - UIImagePickerControllerDelegate
 
-- (void) imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info {
+- (void) imagePickerController: (UIImagePickerController *)picker didFinishPickingMediaWithInfo: (NSDictionary *)info {
     [self dismissViewControllerAnimated:YES completion:^{
         UIImage *editedImage = [info objectForKey:UIImagePickerControllerEditedImage];
         NSData *jpgData = UIImageJPEGRepresentation(editedImage, .55);
@@ -155,12 +160,14 @@ typedef enum imageSource {
     }];
 }
 
-- (void)textFieldDidBeginEditing:(UITextField *)textField {
+#pragma mark - UITextFieldDelegate
+
+- (void)textFieldDidBeginEditing: (UITextField *)textField {
     // Scroll so the text field is still in view.
     [_NmffScrollDetailView setContentOffset:CGPointMake(0,textField.frame.origin.y - 200) animated:TRUE];
 }
 
-- (void)textFieldDidEndEditing:(UITextField *)textField {
+- (void)textFieldDidEndEditing: (UITextField *)textField {
     [textField endEditing:YES];
 
     // Figure out which textField called us
@@ -171,14 +178,15 @@ typedef enum imageSource {
     }
 }
 
-
-- (BOOL)textFieldShouldReturn:(UITextField *)textField {
+- (BOOL)textFieldShouldReturn: (UITextField *)textField {
     [textField resignFirstResponder];
     return YES;
 }
 
-- (void)didReceiveMemoryWarning
-{
+
+#pragma mark - boilerplate
+
+- (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }

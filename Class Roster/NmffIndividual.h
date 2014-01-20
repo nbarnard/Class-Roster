@@ -8,12 +8,17 @@
 
 #import <Foundation/Foundation.h>
 
+#pragma mark - roleType typedef
+
 typedef enum roleType {
     Student = 0,
     Instructor = 1,
     Adminstrator = 2,
     Unknown = 3
 } roleType;
+
+
+#pragma mark - Individual Object Definition
 
 @interface NmffIndividual : NSObject <NSCoding>
 
@@ -23,10 +28,11 @@ typedef enum roleType {
 @property (nonatomic) NSString *github;
 @property (nonatomic) NSString *twitter;
 
-- (NmffIndividual *)initWithName: (NSString *)name andRole:(roleType)role;
+- (NmffIndividual *) initWithName: (NSString *)name andRole: (roleType)role;
 
-- (NmffIndividual *)initWithName: (NSString *)name andRole:(roleType)role andTwitter: (NSString *)twitter andGithub: (NSString *)github;
+- (NmffIndividual *) initWithName: (NSString *)name andRole: (roleType)role andTwitter: (NSString *)twitter andGithub: (NSString *)github;
 
-- (void)updateWithName: (NSString *)name andRole:(roleType)role andTwitter: (NSString *)twitter andGithub: (NSString *)github;
+- (void) updateWithName: (NSString *)name andRole: (roleType)role andTwitter: (NSString *)twitter andGithub: (NSString *)github;
 
 @end
+
